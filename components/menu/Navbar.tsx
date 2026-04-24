@@ -11,10 +11,10 @@ export default function Navbar() {
                     </div>
                     <nav className="hidden md:flex space-x-8 text-sm font-medium">
                         <Link href="#" className="text-orange-500 hover:text-orange-400 transition">Home</Link>
-                        <Link href="#" className="hover:text-orange-400 transition">About</Link>
-                        <Link href="#" className="hover:text-orange-400 transition">Services</Link>
-                        <Link href="#" className="hover:text-orange-400 transition">Portfolio</Link>
-                        <Link href="#" className="hover:text-orange-400 transition">Contact</Link>
+                        <Link href="#" className="text-orange-500 hover:text-orange-400 transition">About</Link>
+                        <Link href="#" className="text-orange-500 hover:text-orange-400 transition">Services</Link>
+                        <Link href="#" className="text-orange-500 hover:text-orange-400 transition">Portfolio</Link>
+                        <Link href="#" className="text-orange-500 hover:text-orange-400 transition">Contact</Link>
                     </nav>
                     <button
                         className="px-6 py-2 rounded-full bg-orange-500 text-white text-sm font-semibold hover:bg-orange-600 transition shadow-[0_0_15px_rgba(249,115,22,0.4)]">
