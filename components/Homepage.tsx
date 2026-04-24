@@ -23,7 +23,7 @@ export default function Homepage() {
                             <div className="w-full md:w-1/2 space-y-6">
                                 <h3 className="text-lg font-medium text-gray-400 tracking-wide uppercase">Hi, I am
                                     <span
-                                        className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-orange-600">Menglong</span>
+                                        className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-orange-600"> Menglong</span>
                                 </h3>
                                 <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight">
                                     <span
