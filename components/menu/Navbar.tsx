@@ -1,6 +1,8 @@
+import {menuData} from "@/data/menuData";
 import Link from "next/link";
 
 export default function Navbar() {
+
     return (
         <>
             <nav
@@ -10,11 +12,14 @@ export default function Navbar() {
                         MENGLONG<span className="text-orange-500">.</span>
                     </div>
                     <nav className="hidden md:flex space-x-8 text-sm font-medium">
-                        <Link href="#" className="text-orange-500 hover:text-orange-400 transition">Home</Link>
-                        <Link href="#" className="text-orange-500 hover:text-orange-400 transition">About</Link>
-                        <Link href="#" className="text-orange-500 hover:text-orange-400 transition">Services</Link>
-                        <Link href="#" className="text-orange-500 hover:text-orange-400 transition">Portfolio</Link>
-                        <Link href="#" className="text-orange-500 hover:text-orange-400 transition">Contact</Link>
+                        {
+                            menuData.map((menu, index) => (
+
+                                <Link key={index} href={menu.target}
+                                      className="text-orange-500 hover:text-orange-400 transition">{menu.title}</Link>
+
+                            ))
+                        }
                     </nav>
                     <button
                         className="px-6 py-2 rounded-full bg-orange-500 text-white text-sm font-semibold hover:bg-orange-600 transition shadow-[0_0_15px_rgba(249,115,22,0.4)]">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {menuData} from "@/data/menuData";
 
 export default function Footer() {
     return (
@@ -8,11 +9,12 @@ export default function Footer() {
                     MENGLONG<span className="text-orange-500">.</span>
                 </div>
                 <nav className="flex flex-wrap justify-center gap-6 mb-6 text-sm text-gray-400">
-                    <Link href="#" className="hover:text-orange-500 transition">Home</Link>
-                    <Link href="#" className="hover:text-orange-500 transition">About</Link>
-                    <Link href="#" className="hover:text-orange-500 transition">Services</Link>
-                    <Link href="#" className="hover:text-orange-500 transition">Portfolio</Link>
-                    <Link href="#" className="hover:text-orange-500 transition">Contact</Link>
+                    {
+                        menuData.map((menu, index) => (
+                            <Link key={index} href={menu.target}
+                                  className="hover:text-orange-500 transition">{menu.title}</Link>
+                        ))
+                    }
                 </nav>
                 <p className="text-gray-500 text-sm">
                     &copy; 2026 Menglong Portfolio. All rights reserved.
