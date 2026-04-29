@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Menglong Keo | Portfolio',
         description: 'Professional portfolio showcasing web development projects and skills.',
-        images: '/CAM-HOTEL.png',
+        images: '/thumnail.png',
         type: 'website',
         siteName: 'Menglong Keo Portfolio',
         url: 'https://menglong.dev',
     },
     twitter: {
         card: 'summary_large_image',
-        images: ['/CAM-HOTEL.png'],
+        images: ['/thumnail.png'],
     },
 };
 
