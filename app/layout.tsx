@@ -3,7 +3,11 @@ import "./globals.css";
 import Navbar from "@/components/menu/Navbar";
 import Footer from "@/components/menu/Footer";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "@/components/ui/sonner";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://menglong.dev'),
@@ -15,7 +19,14 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Menglong Keo | Portfolio',
         description: 'Professional portfolio showcasing web development projects and skills.',
-        images: '/thumnail.png',
+        images: [
+            {
+                url: '/thumnail.png',
+                width: 1200,
+                height: 630,
+                alt: 'Menglong Keo Portfolio',
+            }
+        ],
         type: 'website',
         siteName: 'Menglong Keo Portfolio',
         url: 'https://menglong.dev',
@@ -32,13 +43,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
             <body className="bg-background text-foreground transition-colors duration-300">
                 <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
                     <Navbar />
                     <main className="min-h-screen">{children}</main>
                     <Footer />
-                    <Toaster position="bottom-right" />
+                    <Toaster position="top-right" />
                 </ThemeProvider>
             </body>
         </html>

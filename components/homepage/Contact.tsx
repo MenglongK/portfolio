@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import emailjs from '@emailjs/browser';
-import toast from "react-hot-toast";
+import { toast } from "sonner";
+
 
 export default function Contact() {
     const formRef = useRef<HTMLFormElement | null>(null);
