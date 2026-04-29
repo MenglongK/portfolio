@@ -8,7 +8,7 @@ import {Menu, Moon, Sun, X} from "lucide-react";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const {theme, setTheme} = useTheme();
+    const { theme, setTheme, resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     useEffect(() => setMounted(true), []);
     return (
@@ -28,9 +28,9 @@ export default function Navbar() {
                             </Link>
                         ))}
                         {mounted && (
-                            <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                            <button onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
                                     className="p-2 rounded-full hover:bg-foreground/5 text-orange-500">
-                                {theme === "dark" ? <Sun size={20}/> : <Moon size={20}/>}
+                                {resolvedTheme === "dark" ? <Sun size={20}/> : <Moon size={20}/>}
                             </button>
                         )}
                         <button
@@ -42,9 +42,9 @@ export default function Navbar() {
                     {/* Mobile Toggle */}
                     <div className="flex items-center gap-4 lg:hidden">
                         {mounted && (
-                            <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                                    className="text-orange-500">
-                                {theme === "dark" ? <Sun size={20}/> : <Moon size={20}/>}
+                            <button onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+                                    className="p-2 rounded-full hover:bg-foreground/5 text-orange-500">
+                                {resolvedTheme === "dark" ? <Sun size={20}/> : <Moon size={20}/>}
                             </button>
                         )}
                         <button onClick={() => setIsOpen(!isOpen)} className="text-foreground">

@@ -45,7 +45,7 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
             <body className="bg-background text-foreground transition-colors duration-300">
-                <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+                <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
                     <Navbar />
                     <main className="min-h-screen">{children}</main>
                     <Footer />
