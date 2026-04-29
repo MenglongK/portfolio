@@ -35,7 +35,7 @@ export default function Project() {
                                         width={100}
                                         height={100}
                                         unoptimized={true}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+                                        className="w-full h-full object-fill group-hover:scale-110 transition duration-500" />
                                     <div
                                         className="absolute inset-0 bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center">
                                         <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
