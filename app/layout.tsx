@@ -22,13 +22,18 @@ export const metadata: Metadata = {
         default: 'Menglong Keo | Portfolio',
         template: '%s | Menglong Keo',
     },
+    description: 'Professional portfolio showcasing web development projects and skills.',
     openGraph: {
+        title: 'Menglong Keo | Portfolio',
+        description: 'Professional portfolio showcasing web development projects and skills.',
         images: '/thumnail.png',
         type: 'website',
         siteName: 'Menglong Keo Portfolio',
+        url: 'https://menglong.dev',
     },
     twitter: {
         card: 'summary_large_image',
+        images: ['/thumnail.png'],
     },
 };
 
