@@ -76,16 +76,32 @@ export default function Homepage() {
                             <div className="w-full lg:w-1/2 flex justify-center mt-10 lg:mt-0">
                                 <div
                                     className="relative w-64 h-64 md:w-72 md:h-72 lg:w-96 lg:h-96 mx-auto rounded-full p-2 bg-linear-to-tr from-orange-500/40 to-transparent backdrop-blur-xl border border-foreground/10 shadow-2xl">
-                                    <div
-                                        className="w-full h-full rounded-full overflow-hidden bg-foreground/5 border border-foreground/10 flex items-center justify-center">
-                                        <Image
-                                            src="/profile.png"
-                                            alt="Menglong"
-                                            width={100}
-                                            height={100}
-                                            unoptimized={true}
-                                            loading="eager"
-                                            className="object-cover w-full h-full opacity-80 mix-blend-normal hover:mix-blend-luminosity transition duration-500" />
+                                    <div className="group relative w-full h-full rounded-full bg-foreground/5 border border-foreground/10">
+                                        {/* Bottom Half: Clipped by the circle */}
+                                        <div className="absolute inset-0 rounded-full overflow-hidden flex items-end justify-center">
+                                            <Image
+                                                src="/profile.png"
+                                                alt="Menglong"
+                                                width={300}
+                                                height={400}
+                                                unoptimized={true}
+                                                loading="eager"
+                                                className="w-[90%] h-auto object-contain opacity-100 mix-blend-normal group-hover:mix-blend-luminosity transition-all duration-700 scale-[1.15] group-hover:scale-[1.20] origin-bottom"
+                                            />
+                                        </div>
+
+                                        {/* Top Half: Pop-out effect ignoring the top border */}
+                                        <div className="absolute inset-0 pointer-events-none [clip-path:inset(-50%_-50%_50%_-50%)] drop-shadow-2xl flex items-end justify-center">
+                                            <Image
+                                                src="/profile.png"
+                                                alt="Menglong"
+                                                width={400}
+                                                height={500}
+                                                unoptimized={true}
+                                                loading="eager"
+                                                className="w-[90%] h-auto object-contain opacity-100 mix-blend-normal group-hover:mix-blend-luminosity transition-all duration-700 scale-[1.15] group-hover:scale-[1.20] origin-bottom"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
