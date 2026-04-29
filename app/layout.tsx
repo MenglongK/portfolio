@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://menglong.dev'),
@@ -19,21 +19,24 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Menglong Keo | Portfolio',
         description: 'Professional portfolio showcasing web development projects and skills.',
+        url: 'https://menglong.dev',
+        siteName: 'Menglong Keo Portfolio',
         images: [
             {
                 url: '/thumnail.png',
                 width: 1200,
                 height: 630,
                 alt: 'Menglong Keo Portfolio',
-            }
+            },
         ],
+        locale: 'en_US',
         type: 'website',
-        siteName: 'Menglong Keo Portfolio',
-        url: 'https://menglong.dev',
     },
     twitter: {
         card: 'summary_large_image',
-        images: ['/thumnail.png'],
+        title: 'Menglong Keo | Portfolio',
+        description: 'Professional portfolio showcasing web development projects and skills.',
+        images: ['https://menglong.dev/thumnail.png'],
     },
 };
 
