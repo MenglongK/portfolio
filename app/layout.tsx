@@ -1,20 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/menu/Navbar";
 import Footer from "@/components/menu/Footer";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { Toaster } from "react-hot-toast";
-
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://menglong.dev'),
@@ -26,14 +15,14 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Menglong Keo | Portfolio',
         description: 'Professional portfolio showcasing web development projects and skills.',
-        images: '/thumnail.png',
+        images: '/CAM-HOTEL.png',
         type: 'website',
         siteName: 'Menglong Keo Portfolio',
         url: 'https://menglong.dev',
     },
     twitter: {
         card: 'summary_large_image',
-        images: ['/thumnail.png'],
+        images: ['/CAM-HOTEL.png'],
     },
 };
 
