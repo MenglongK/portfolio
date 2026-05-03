@@ -10,7 +10,7 @@ export default function Homepage() {
     return (
         <>
             <div
-                className="bg-background text-foreground/80 font-sans antialiased overflow-x-hidden relative selection:bg-orange-500 selection:text-foreground min-h-screen">
+                className="bg-background text-foreground/80 font-sans antialiased relative selection:bg-orange-500 selection:text-foreground min-h-screen">
                 {/* Decorative Background Blobs for Glassmorphism Effect */}
                 <div
                     className="fixed top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-orange-600/20 blur-[120px] pointer-events-none z-0"></div>
@@ -22,7 +22,7 @@ export default function Homepage() {
                 {/* Main Content Wrapper */}
                 <div id="home" className="relative z-10">
                     {/* Hero Section */}
-                    <motion.section initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="pt-32 pb-20 container mx-auto px-6 min-h-screen flex flex-col justify-center">
+                    <motion.section initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="pt-32 pb-20 container mx-auto px-6 min-h-screen flex flex-col justify-center">
                         <div className="flex flex-col lg:flex-row items-center gap-12">
                             {/* Left Content */}
                             <div className="w-full lg:w-1/2 space-y-6">
@@ -85,7 +85,7 @@ export default function Homepage() {
                                                 width={300}
                                                 height={400}
                                                 unoptimized={true}
-                                                loading="eager"
+                                                priority
                                                 className="w-[90%] h-auto object-contain opacity-100 mix-blend-normal group-hover:mix-blend-luminosity transition-all duration-700 scale-[1.15] group-hover:scale-[1.20] origin-bottom"
                                             />
                                         </div>
@@ -98,7 +98,7 @@ export default function Homepage() {
                                                 width={400}
                                                 height={500}
                                                 unoptimized={true}
-                                                loading="eager"
+                                                priority
                                                 className="w-[90%] h-auto object-contain opacity-100 mix-blend-normal group-hover:mix-blend-luminosity transition-all duration-700 scale-[1.15] group-hover:scale-[1.20] origin-bottom"
                                             />
                                         </div>

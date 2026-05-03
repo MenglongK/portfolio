@@ -20,7 +20,7 @@ export default function About() {
     return (
         <>
             {/* Skills Section */}
-            <motion.section initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} id="skills" className="py-20 container mx-auto px-6">
+            <motion.section initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} id="skills" className="py-20 container mx-auto px-6">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Skills</h2>
                     <div className="w-20 h-1 bg-orange-500 mx-auto rounded-full"></div>
@@ -29,7 +29,7 @@ export default function About() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {
                         skillsListing.map((item, index) => (
-                            <motion.div key={index} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }} viewport={{ once: true }}
+                            <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }} viewport={{ once: true }}
                                 className="bg-foreground/5 backdrop-blur-md border border-foreground/10 p-8 rounded-3xl hover:bg-foreground/10 hover:border-orange-500/50 transition duration-300 group">
                                 <div
                                     className="w-14 h-14 rounded-full bg-orange-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition">
@@ -43,7 +43,7 @@ export default function About() {
                 </div>
             </motion.section>
             {/* About Me Section */}
-            <motion.section initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} id="about" className="py-20 container mx-auto px-6">
+            <motion.section initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} id="about" className="py-20 container mx-auto px-6">
                 <div
                     className="bg-foreground/5 backdrop-blur-xl border border-foreground/10 rounded-3xl p-8 md:p-16 flex flex-col lg:flex-row items-center gap-12 relative overflow-hidden">
                     <div
@@ -57,7 +57,7 @@ export default function About() {
                                 width={100}
                                 height={100}
                                 unoptimized={true}
-                                loading="eager"
+                                priority
                                 className="w-full h-auto hover:grayscale-0 transition duration-500" />
                         </div>
                     </div>
