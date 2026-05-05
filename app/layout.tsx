@@ -38,6 +38,12 @@ export const metadata: Metadata = {
         description: 'Professional portfolio showcasing web development projects and skills.',
         images: ['https://menglong.dev/thumnail.png'],
     },
+    other: {
+        'messenger:url': 'https://menglong.dev',
+        'messenger:title': 'Menglong Keo | Portfolio',
+        'messenger:description': 'Professional portfolio showcasing web development projects and skills.',
+        'messenger:image': 'https://menglong.dev/thumnail.png',
+    },
 };
 
 export default function RootLayout({
