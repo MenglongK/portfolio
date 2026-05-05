@@ -20,7 +20,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { experienceData, educationData, skills } from "@/data/resume";
 
-
 export default function Resume() {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
