@@ -98,7 +98,7 @@ export default function Homepage() {
                                     ></motion.span>
                                 </h1>
                                 <p className="text-foreground/60 leading-relaxed max-w-lg">
-                                    I engineer high-performance web applications by blending Figma design and Next.js
+                                    I develop high-performance web applications by blending Figma design and Next.js
                                     speed with the robust power of Java Spring Boot and PostgreSQL. I don’t just code; I
                                     build seamless digital experiences from the database to the interface. Let’s create
                                     something amazing together.
