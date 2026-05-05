@@ -73,6 +73,7 @@ export default function About() {
                 alt="About Menglong"
                 width={400}
                 height={400}
+                unoptimized={true}
                 priority
                 className="w-full h-auto hover:grayscale-0 transition duration-500"
               />
