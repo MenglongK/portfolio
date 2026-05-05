@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         siteName: 'Menglong Keo Portfolio',
         images: [
             {
-                url: 'https://menglong.dev/thumnail.png',
+                url: 'https://menglong.dev/thumbnail.png',
                 width: 1200,
                 height: 630,
                 alt: 'Menglong Keo Portfolio',
@@ -36,13 +36,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'Menglong Keo | Portfolio',
         description: 'Professional portfolio showcasing web development projects and skills.',
-        images: ['https://menglong.dev/thumnail.png'],
-    },
-    other: {
-        'messenger:url': 'https://menglong.dev',
-        'messenger:title': 'Menglong Keo | Portfolio',
-        'messenger:description': 'Professional portfolio showcasing web development projects and skills.',
-        'messenger:image': 'https://menglong.dev/thumnail.png',
+        images: ['https://menglong.dev/thumbnail.png'],
     },
 };
 
