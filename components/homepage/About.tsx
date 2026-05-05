@@ -4,16 +4,9 @@ import Image from "next/image";
 import { SiTiktok, SiTelegram, SiFacebook, SiInstagram, SiYoutube, SiGithub } from "@icons-pack/react-simple-icons";
 
 
+import Link from "next/link";
+
 export default function About() {
-    const handleDownloadCV = () => {
-        const pdfUrl = '/resume.pdf';
-        const link = document.createElement('a');
-        link.href = pdfUrl;
-        link.download = 'resume.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
     return (
         <>
             {/* Skills Section */}
@@ -70,10 +63,10 @@ export default function About() {
                             effortless aesthetic.
                         </p>
                         <div className="flex flex-col xl:flex-row items-start xl:items-center gap-6">
-                            <button
+                            <Link href="/cv"
                                 className="px-8 py-3 rounded-full bg-orange-500 text-foreground font-semibold hover:bg-orange-600 transition shadow-[0_0_15px_rgba(249,115,22,0.4)] whitespace-nowrap">
-                                Download CV
-                            </button>
+                                View Resume
+                            </Link>
                             <div className="flex flex-wrap items-center gap-3">
                                 <a href="https://www.facebook.com/menglongkeo07" target="_blank" aria-label="Facebook" className="p-2.5 rounded-full bg-foreground/5 hover:bg-orange-500/20 hover:text-orange-500 hover:border-orange-500/50 transition border border-foreground/10 text-foreground/70"><SiFacebook size={18} /></a>
                                 <a href="https://www.instagram.com/menglongkeo" target="_blank" aria-label="Instagram" className="p-2.5 rounded-full bg-foreground/5 hover:bg-orange-500/20 hover:text-orange-500 hover:border-orange-500/50 transition border border-foreground/10 text-foreground/70"><SiInstagram size={18} /></a>

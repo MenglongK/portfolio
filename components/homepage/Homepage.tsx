@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import About from "./About";
+import Link from "next/link";
 import Project from "./Project";
 import Contact from "./Contact";
 
@@ -123,10 +124,10 @@ export default function Homepage() {
                                         className="px-8 py-3 rounded-full bg-orange-500 text-foreground font-semibold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30">
                                         Hire Me
                                     </button>
-                                    <button
+                                    <Link href="/cv"
                                         className="px-8 py-3 rounded-full bg-foreground/5 backdrop-blur-md border border-foreground/10 text-foreground font-semibold hover:bg-foreground/10 transition">
-                                        Download CV
-                                    </button>
+                                        View Resume
+                                    </Link>
                                 </div>
 
                                 {/* Glass Stats */}
