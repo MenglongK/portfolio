@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
+import HireMeModal from "@/components/ui/HireMeModal";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -60,6 +61,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Navbar />
+          <HireMeModal />
           <main className="min-h-screen">{children}</main>
           <Footer />
           <Toaster position="top-right" />

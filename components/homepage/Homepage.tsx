@@ -140,7 +140,9 @@ export default function Homepage() {
                 </p>
 
                 <div className="flex gap-4 pt-4">
-                  <button className="px-8 py-3 rounded-full bg-orange-500 text-foreground font-semibold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30">
+                  <button 
+                    onClick={() => window.dispatchEvent(new Event('openHireMe'))}
+                    className="px-8 py-3 rounded-full bg-orange-500 text-foreground font-semibold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30">
                     Hire Me
                   </button>
                   <Link

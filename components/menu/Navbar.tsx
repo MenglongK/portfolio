@@ -49,7 +49,9 @@ export default function Navbar() {
                 )}
               </button>
             )}
-            <button className="px-6 py-2 rounded-full bg-orange-500 text-white font-semibold hover:bg-orange-600 transition shadow-lg shadow-orange-500/20">
+            <button 
+              onClick={() => window.dispatchEvent(new Event('openHireMe'))}
+              className="px-6 py-2 rounded-full bg-orange-500 text-white font-semibold hover:bg-orange-600 transition shadow-lg shadow-orange-500/20">
               Hire Me
             </button>
           </div>
@@ -98,7 +100,12 @@ export default function Navbar() {
                   {menu.title}
                 </Link>
               ))}
-              <button className="w-full py-3 rounded-xl bg-orange-500 text-white font-bold">
+              <button 
+                onClick={() => {
+                  setIsOpen(false);
+                  window.dispatchEvent(new Event('openHireMe'));
+                }}
+                className="w-full py-3 rounded-xl bg-orange-500 text-white font-bold">
                 Hire Me
               </button>
             </motion.div>
