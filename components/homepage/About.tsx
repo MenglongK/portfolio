@@ -1,8 +1,7 @@
 import { skillsListing } from "@/data/mockData";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { SiTiktok, SiTelegram, SiFacebook, SiInstagram, SiYoutube, SiX, SiGithub } from "@icons-pack/react-simple-icons";
-import { Linkedin } from "lucide-react";
+import { SiTiktok, SiTelegram, SiFacebook, SiInstagram, SiYoutube, SiGithub } from "@icons-pack/react-simple-icons";
 
 
 export default function About() {
