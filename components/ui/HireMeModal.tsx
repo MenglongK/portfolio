@@ -93,11 +93,11 @@ export default function HireMeModal() {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] sm:w-[90vw] max-w-2xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto z-[101] bg-foreground/5 backdrop-blur-xl border border-orange-500/30 shadow-[0_0_50px_rgba(249,115,22,0.15)] rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10"
+            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[92vw] sm:w-[90vw] max-w-2xl max-h-[85vh] sm:max-h-[90vh] overflow-y-auto z-[101] bg-foreground/5 backdrop-blur-xl border border-orange-500/30 shadow-[0_0_50px_rgba(249,115,22,0.15)] rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10"
           >
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 sm:top-6 sm:right-6 text-foreground/50 hover:text-orange-500 transition bg-foreground/5 sm:bg-transparent p-2 sm:p-0 rounded-full"
+              className="absolute top-3 right-3 sm:top-6 sm:right-6 text-foreground/50 hover:text-orange-500 transition bg-foreground/10 sm:bg-transparent p-2 sm:p-0 rounded-full z-10"
             >
               <X size={20} className="sm:w-6 sm:h-6" />
             </button>
@@ -110,8 +110,8 @@ export default function HireMeModal() {
               life.
             </p>
 
-            <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form ref={formRef} onSubmit={sendEmail} className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-2">
                   <label className="text-sm text-foreground/60 pl-2">
                     Your Name
@@ -142,13 +142,13 @@ export default function HireMeModal() {
                 <label className="text-sm text-foreground/60 pl-2">
                   Services Needed
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
                   {services.map((svc) => (
                     <button
                       key={svc.id}
                       type="button"
                       onClick={() => setSelectedService(svc.id)}
-                      className={`flex items-center gap-2 px-4 py-3 rounded-xl border transition ${
+                      className={`flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-3 rounded-xl border transition ${
                         selectedService === svc.id
                           ? "bg-orange-500/10 border-orange-500 text-orange-500 shadow-[0_0_15px_rgba(249,115,22,0.2)]"
                           : "bg-background/50 border-foreground/10 text-foreground/70 hover:border-orange-500/50"
@@ -183,8 +183,8 @@ export default function HireMeModal() {
                 <textarea
                   name="message"
                   required
-                  rows={4}
-                  className="w-full bg-background/50 border border-foreground/10 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition placeholder-gray-600 resize-none"
+                  rows={3}
+                  className="w-full bg-background/50 border border-foreground/10 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition placeholder-gray-600 resize-none sm:rows-4"
                   placeholder="A detailed description of your vision, goals, and requirements..."
                 ></textarea>
               </div>
