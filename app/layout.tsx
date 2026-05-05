@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Menglong Keo | Portfolio',
         description: 'Professional portfolio showcasing web development projects and skills.',
-        url: 'https://menglong.dev',
+        url: '/',
         siteName: 'Menglong Keo Portfolio',
         images: [
             {
