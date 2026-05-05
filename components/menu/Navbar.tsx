@@ -2,6 +2,7 @@
 import {menuData} from "@/data/menuData";
 import Link from "next/link";
 import {useEffect, useState} from "react";
+import {usePathname} from "next/navigation";
 import {useTheme} from "next-themes";
 import {AnimatePresence, motion} from "framer-motion";
 import {Menu, Moon, Sun, X} from "lucide-react";
@@ -9,8 +10,12 @@ import {Menu, Moon, Sun, X} from "lucide-react";
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const { theme, setTheme, resolvedTheme } = useTheme();
+    const pathname = usePathname();
     const [mounted, setMounted] = useState(false);
     useEffect(() => setMounted(true), []);
+
+    if (pathname === '/cv') return null;
+
     return (
         <>
             <nav className="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-2xl border-b border-foreground/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">

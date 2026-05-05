@@ -1,7 +1,13 @@
+"use client";
 import Link from "next/link";
 import {menuData} from "@/data/menuData";
+import {usePathname} from "next/navigation";
 
 export default function Footer() {
+    const pathname = usePathname();
+
+    if (pathname === '/cv') return null;
+
     return (
         <footer className="border-t border-foreground/10 bg-background/40 backdrop-blur-2xl py-6 shadow-[0_-4px_30px_rgba(0,0,0,0.1)] relative z-10">
             <div className="container mx-auto px-6 py-10 flex flex-col items-center">
