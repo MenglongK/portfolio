@@ -7,28 +7,10 @@ import About from "./About";
 import Project from "./Project";
 import Contact from "./Contact";
 
-export default function Homepage() {
-    const [text, setText] = useState("");
-    const [isDeleting, setIsDeleting] = useState(false);
-    const fullText = "Web Developer";
-
+function NameTypewriter() {
     const [nameText, setNameText] = useState("");
     const [isNameDeleting, setIsNameDeleting] = useState(false);
     const fullNameText = "Menglong";
-
-    useEffect(() => {
-        let timeout: NodeJS.Timeout;
-        if (!isDeleting && text === fullText) {
-            timeout = setTimeout(() => setIsDeleting(true), 2000);
-        } else if (isDeleting && text === "") {
-            timeout = setTimeout(() => setIsDeleting(false), 500);
-        } else {
-            timeout = setTimeout(() => {
-                setText(fullText.substring(0, text.length + (isDeleting ? -1 : 1)));
-            }, isDeleting ? 50 : 150);
-        }
-        return () => clearTimeout(timeout);
-    }, [text, isDeleting]);
 
     useEffect(() => {
         let timeout: NodeJS.Timeout;
@@ -44,9 +26,42 @@ export default function Homepage() {
         return () => clearTimeout(timeout);
     }, [nameText, isNameDeleting]);
 
+    return <>{nameText}</>;
+}
+
+function RoleTypewriter() {
+    const [text, setText] = useState("");
+    const [isDeleting, setIsDeleting] = useState(false);
+    const fullText = "Web Developer";
+
+    useEffect(() => {
+        let timeout: NodeJS.Timeout;
+        if (!isDeleting && text === fullText) {
+            timeout = setTimeout(() => setIsDeleting(true), 2000);
+        } else if (isDeleting && text === "") {
+            timeout = setTimeout(() => setIsDeleting(false), 500);
+        } else {
+            timeout = setTimeout(() => {
+                setText(fullText.substring(0, text.length + (isDeleting ? -1 : 1)));
+            }, isDeleting ? 50 : 150);
+        }
+        return () => clearTimeout(timeout);
+    }, [text, isDeleting]);
+
     const webText = text.slice(0, 3);
     const devText = text.slice(3);
 
+    return (
+        <>
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-orange-600">
+                {webText}
+            </span>
+            {devText}
+        </>
+    );
+}
+
+export default function Homepage() {
     return (
         <>
             <div
@@ -67,7 +82,7 @@ export default function Homepage() {
                             {/* Left Content */}
                             <div className="w-full lg:w-1/2 space-y-6">
                                 <h3 className="text-lg font-medium text-foreground/60 tracking-wide uppercase min-h-[1.5em]">Hi, I am
-                                    <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-orange-600"> {nameText}</span>
+                                    <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-orange-600"> <NameTypewriter /></span>
                                     <motion.span
                                         animate={{ opacity: [1, 0] }}
                                         transition={{ repeat: Infinity, duration: 0.8 }}
@@ -75,10 +90,7 @@ export default function Homepage() {
                                     ></motion.span>
                                 </h3>
                                 <h1 className="text-5xl md:text-7xl font-extrabold text-foreground leading-tight min-h-[1.25em]">
-                                    <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-orange-600">
-                                        {webText}
-                                    </span>
-                                    {devText}
+                                    <RoleTypewriter />
                                     <motion.span
                                         animate={{ opacity: [1, 0] }}
                                         transition={{ repeat: Infinity, duration: 0.8 }}

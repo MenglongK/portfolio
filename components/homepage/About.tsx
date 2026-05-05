@@ -3,10 +3,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 
-export const metadata = {
-    title: 'About Me',
-    description: 'Learn more about Menglong Keo\'s background and journey.',
-};
 export default function About() {
     const handleDownloadCV = () => {
         const pdfUrl = '/resume.pdf';
