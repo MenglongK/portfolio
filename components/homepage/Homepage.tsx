@@ -10,21 +10,27 @@ import Contact from "./Contact";
 function NameTypewriter() {
     const [nameText, setNameText] = useState("");
     const [isNameDeleting, setIsNameDeleting] = useState(false);
-    const fullNameText = "Menglong";
+    const [wordIndex, setWordIndex] = useState(0);
+    const words = ["Menglong", "Hire Me"];
 
     useEffect(() => {
         let timeout: NodeJS.Timeout;
-        if (!isNameDeleting && nameText === fullNameText) {
+        const currentWord = words[wordIndex % words.length];
+
+        if (!isNameDeleting && nameText === currentWord) {
             timeout = setTimeout(() => setIsNameDeleting(true), 2500);
         } else if (isNameDeleting && nameText === "") {
-            timeout = setTimeout(() => setIsNameDeleting(false), 800);
+            timeout = setTimeout(() => {
+                setIsNameDeleting(false);
+                setWordIndex((prev) => prev + 1);
+            }, 800);
         } else {
             timeout = setTimeout(() => {
-                setNameText(fullNameText.substring(0, nameText.length + (isNameDeleting ? -1 : 1)));
+                setNameText(currentWord.substring(0, nameText.length + (isNameDeleting ? -1 : 1)));
             }, isNameDeleting ? 60 : 160);
         }
         return () => clearTimeout(timeout);
-    }, [nameText, isNameDeleting]);
+    }, [nameText, isNameDeleting, wordIndex]);
 
     return <>{nameText}</>;
 }
@@ -32,24 +38,32 @@ function NameTypewriter() {
 function RoleTypewriter() {
     const [text, setText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
-    const fullText = "Web Developer";
+    const [wordIndex, setWordIndex] = useState(0);
+    const words = ["Web Developer", "Full-Stack"];
 
     useEffect(() => {
         let timeout: NodeJS.Timeout;
-        if (!isDeleting && text === fullText) {
+        const currentWord = words[wordIndex % words.length];
+
+        if (!isDeleting && text === currentWord) {
             timeout = setTimeout(() => setIsDeleting(true), 2000);
         } else if (isDeleting && text === "") {
-            timeout = setTimeout(() => setIsDeleting(false), 500);
+            timeout = setTimeout(() => {
+                setIsDeleting(false);
+                setWordIndex((prev) => prev + 1);
+            }, 500);
         } else {
             timeout = setTimeout(() => {
-                setText(fullText.substring(0, text.length + (isDeleting ? -1 : 1)));
+                setText(currentWord.substring(0, text.length + (isDeleting ? -1 : 1)));
             }, isDeleting ? 50 : 150);
         }
         return () => clearTimeout(timeout);
-    }, [text, isDeleting]);
+    }, [text, isDeleting, wordIndex]);
 
-    const webText = text.slice(0, 3);
-    const devText = text.slice(3);
+    const isFullStack = words[wordIndex % words.length] === "Full-Stack";
+    const splitIndex = isFullStack ? 4 : 3;
+    const webText = text.slice(0, splitIndex);
+    const devText = text.slice(splitIndex);
 
     return (
         <>
@@ -98,7 +112,7 @@ export default function Homepage() {
                                     ></motion.span>
                                 </h1>
                                 <p className="text-foreground/60 leading-relaxed max-w-lg">
-                                    I develop high-performance web applications by blending Figma design and Next.js
+                                    I build high-performance web applications by blending Figma design and Next.js
                                     speed with the robust power of Java Spring Boot and PostgreSQL. I don’t just code; I
                                     build seamless digital experiences from the database to the interface. Let’s create
                                     something amazing together.

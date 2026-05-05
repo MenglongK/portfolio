@@ -1,6 +1,8 @@
 import { skillsListing } from "@/data/mockData";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { SiTiktok, SiTelegram, SiFacebook, SiInstagram, SiYoutube, SiX, SiGithub } from "@icons-pack/react-simple-icons";
+import { Linkedin } from "lucide-react";
 
 
 export default function About() {
@@ -50,9 +52,8 @@ export default function About() {
                             <Image
                                 src="/profile.png"
                                 alt="About Menglong"
-                                width={100}
-                                height={100}
-                                unoptimized={true}
+                                width={400}
+                                height={400}
                                 priority
                                 className="w-full h-auto hover:grayscale-0 transition duration-500" />
                         </div>
@@ -69,10 +70,20 @@ export default function About() {
                             build apps; I craft seamless digital ecosystems where complex engineering meets
                             effortless aesthetic.
                         </p>
-                        <button
-                            className="px-8 py-3 rounded-full bg-orange-500 text-foreground font-semibold hover:bg-orange-600 transition shadow-[0_0_15px_rgba(249,115,22,0.4)]">
-                            Download CV
-                        </button>
+                        <div className="flex flex-col xl:flex-row items-start xl:items-center gap-6">
+                            <button
+                                className="px-8 py-3 rounded-full bg-orange-500 text-foreground font-semibold hover:bg-orange-600 transition shadow-[0_0_15px_rgba(249,115,22,0.4)] whitespace-nowrap">
+                                Download CV
+                            </button>
+                            <div className="flex flex-wrap items-center gap-3">
+                                <a href="https://www.facebook.com/menglongkeo07" target="_blank" aria-label="Facebook" className="p-2.5 rounded-full bg-foreground/5 hover:bg-orange-500/20 hover:text-orange-500 hover:border-orange-500/50 transition border border-foreground/10 text-foreground/70"><SiFacebook size={18} /></a>
+                                <a href="https://www.instagram.com/menglongkeo" target="_blank" aria-label="Instagram" className="p-2.5 rounded-full bg-foreground/5 hover:bg-orange-500/20 hover:text-orange-500 hover:border-orange-500/50 transition border border-foreground/10 text-foreground/70"><SiInstagram size={18} /></a>
+                                <a href="https://www.youtube.com/@GoWithLong" target="_blank" aria-label="Youtube" className="p-2.5 rounded-full bg-foreground/5 hover:bg-orange-500/20 hover:text-orange-500 hover:border-orange-500/50 transition border border-foreground/10 text-foreground/70"><SiYoutube size={18} /></a>
+                                <a href="https://www.tiktok.com/@m3ngl0ng" target="_blank" aria-label="TikTok" className="p-2.5 rounded-full bg-foreground/5 hover:bg-orange-500/20 hover:text-orange-500 hover:border-orange-500/50 transition border border-foreground/10 text-foreground/70"><SiTiktok size={18} /></a>
+                                <a href="https://t.me/menglongkeo" target="_blank" aria-label="Telegram" className="p-2.5 rounded-full bg-foreground/5 hover:bg-orange-500/20 hover:text-orange-500 hover:border-orange-500/50 transition border border-foreground/10 text-foreground/70"><SiTelegram size={18} /></a>
+                                <a href="https://github.com/MenglongK" target="_blank" aria-label="GitHub" className="p-2.5 rounded-full bg-foreground/5 hover:bg-orange-500/20 hover:text-orange-500 hover:border-orange-500/50 transition border border-foreground/10 text-foreground/70"><SiGithub size={18} /></a>
+                            </div>
+                        </div>
                         <div
                             className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-foreground/10 mt-8">
                             <div className="text-center">
