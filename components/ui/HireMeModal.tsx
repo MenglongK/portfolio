@@ -82,19 +82,19 @@ export default function HireMeModal() {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-2xl max-h-[90vh] overflow-y-auto z-[101] bg-foreground/5 backdrop-blur-xl border border-orange-500/30 shadow-[0_0_50px_rgba(249,115,22,0.15)] rounded-3xl p-6 md:p-10"
+            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] sm:w-[90vw] max-w-2xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto z-[101] bg-foreground/5 backdrop-blur-xl border border-orange-500/30 shadow-[0_0_50px_rgba(249,115,22,0.15)] rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10"
           >
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-6 right-6 text-foreground/50 hover:text-orange-500 transition"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 text-foreground/50 hover:text-orange-500 transition bg-foreground/5 sm:bg-transparent p-2 sm:p-0 rounded-full"
             >
-              <X size={24} />
+              <X size={20} className="sm:w-6 sm:h-6" />
             </button>
 
-            <h2 className="text-3xl font-extrabold text-foreground mb-2 flex items-center gap-3">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-2 flex items-center gap-3 pr-10">
               Hire Me <span className="text-orange-500">.</span>
             </h2>
-            <p className="text-foreground/60 mb-8">
+            <p className="text-sm sm:text-base text-foreground/60 mb-6 sm:mb-8">
               Tell me about your next project. I'd love to help you bring it to
               life.
             </p>
