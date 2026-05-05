@@ -11,7 +11,7 @@ function NameTypewriter() {
     const [nameText, setNameText] = useState("");
     const [isNameDeleting, setIsNameDeleting] = useState(false);
     const [wordIndex, setWordIndex] = useState(0);
-    const words = ["Menglong", "Hire Me"];
+    const words = ["Menglong", "Full-Stack Developer"];
 
     useEffect(() => {
         let timeout: NodeJS.Timeout;
@@ -39,7 +39,7 @@ function RoleTypewriter() {
     const [text, setText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
     const [wordIndex, setWordIndex] = useState(0);
-    const words = ["Web Developer", "Full-Stack"];
+    const words = ["Web Developer", "Hire Me"];
 
     useEffect(() => {
         let timeout: NodeJS.Timeout;
@@ -60,8 +60,8 @@ function RoleTypewriter() {
         return () => clearTimeout(timeout);
     }, [text, isDeleting, wordIndex]);
 
-    const isFullStack = words[wordIndex % words.length] === "Full-Stack";
-    const splitIndex = isFullStack ? 4 : 3;
+    const isHireMe = words[wordIndex % words.length] === "Hire Me";
+    const splitIndex = isHireMe ? 4 : 3;
     const webText = text.slice(0, splitIndex);
     const devText = text.slice(splitIndex);
 
