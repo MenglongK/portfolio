@@ -42,15 +42,15 @@ export default function Resume() {
 
       // Use JPEG with high pixelRatio for crisp text and optimized quality to hit ~2MB size
       const imgData = await toJpeg(element, {
-        quality: 0.98,
-        pixelRatio: 5, 
+        quality: 0.92,
+        pixelRatio: 4,
         backgroundColor: resolvedTheme === "dark" ? "#09090b" : "#ffffff",
         style: {
           margin: "0",
           borderRadius: "0",
           border: "none",
-          boxShadow: "none"
-        }
+          boxShadow: "none",
+        },
       });
 
       const pdf = new jsPDF({
@@ -62,18 +62,21 @@ export default function Resume() {
 
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
-      
+
       const rect = element.getBoundingClientRect();
       const canvasWidth = rect.width;
       const canvasHeight = rect.height;
 
       // Scale to fit within one A4 page (adding small 10mm margins)
       const margin = 10;
-      const maxPdfWidth = pdfWidth - (margin * 2);
-      const maxPdfHeight = pageHeight - (margin * 2);
+      const maxPdfWidth = pdfWidth - margin * 2;
+      const maxPdfHeight = pageHeight - margin * 2;
 
-      const ratio = Math.min(maxPdfWidth / canvasWidth, maxPdfHeight / canvasHeight);
-      
+      const ratio = Math.min(
+        maxPdfWidth / canvasWidth,
+        maxPdfHeight / canvasHeight,
+      );
+
       const finalWidth = canvasWidth * ratio;
       const finalHeight = canvasHeight * ratio;
 
@@ -113,7 +116,10 @@ export default function Resume() {
       `,
         }}
       />
-      <div id="cv-wrapper" className="bg-background text-foreground/80 font-sans antialiased relative selection:bg-orange-500 selection:text-foreground min-h-screen py-6 sm:py-10 print:py-0 print:bg-white">
+      <div
+        id="cv-wrapper"
+        className="bg-background text-foreground/80 font-sans antialiased relative selection:bg-orange-500 selection:text-foreground min-h-screen py-6 sm:py-10 print:py-0 print:bg-white"
+      >
         {/* Decorative Background Blobs for Glassmorphism Effect */}
         <div className="fixed top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-orange-600/20 blur-[120px] pointer-events-none z-0 print:hidden"></div>
         <div className="fixed bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-purple-600/20 blur-[120px] pointer-events-none z-0 print:hidden"></div>
@@ -155,14 +161,23 @@ export default function Resume() {
                 disabled={isDownloading}
                 className="flex items-center gap-2 px-6 py-2 rounded-full bg-orange-500 text-white font-semibold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                {isDownloading ? <Loader2 size={18} className="animate-spin" /> : <Download size={18} />}
-                <span className="hidden sm:inline">{isDownloading ? "Generating..." : "Download PDF"}</span>
+                {isDownloading ? (
+                  <Loader2 size={18} className="animate-spin" />
+                ) : (
+                  <Download size={18} />
+                )}
+                <span className="hidden sm:inline">
+                  {isDownloading ? "Generating..." : "Download PDF"}
+                </span>
               </button>
             </div>
           </motion.div>
 
           {/* CV Content Wrapper */}
-          <div id="cv-content" className="bg-foreground/5 backdrop-blur-xl border border-foreground/10 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl print:bg-white print:text-black print:border-none print:shadow-none print:p-4">
+          <div
+            id="cv-content"
+            className="bg-foreground/5 backdrop-blur-xl border border-foreground/10 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl print:bg-white print:text-black print:border-none print:shadow-none print:p-4"
+          >
             {/* Header Section */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
