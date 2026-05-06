@@ -66,7 +66,7 @@ export default function Resume() {
           "p-6": "p-12",
           "sm:p-8": "p-12",
         };
-        
+
         // Swap base classes with their desktop equivalents
         Object.entries(classMap).forEach(([mobile, desktop]) => {
           if (el.classList.contains(mobile)) {
@@ -257,11 +257,11 @@ export default function Resume() {
                 <div className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-3 text-sm text-foreground/70 print:text-gray-600 print:justify-start">
                   <div className="flex items-center gap-2">
                     <Mail size={16} className="text-orange-500" />{" "}
-                    menglong@example.com
+                    menglongkeo07@gmail.com
                   </div>
                   <div className="flex items-center gap-2">
-                    <Phone size={16} className="text-orange-500" /> +855 012 345
-                    678
+                    <Phone size={16} className="text-orange-500" /> +855 87 896
+                    167
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin size={16} className="text-orange-500" /> Phnom Penh,
@@ -286,13 +286,7 @@ export default function Resume() {
                 <Award className="text-orange-500" /> Profile
               </h3>
               <p className="text-foreground/70 leading-relaxed print:text-gray-700">
-                I bridge the gap between elegant pixels and robust logic, living
-                at the intersection of high-fidelity design and high-performance
-                code. I leverage Figma to map out intuitive user journeys, then
-                bring them to life with the fluid speed of Next.js. Beneath the
-                surface, I engineer scalable, enterprise-ready architectures
-                using Java Spring Boot, grounded by the rock-solid reliability
-                of PostgreSQL.
+                I am a passionate web developer with experience in building clean, user-friendly, and responsive applications. I enjoy turning UI designs from Figma into fast, functional websites using modern tools like React and Next.js. On the backend, I build secure and scalable APIs using Java Spring Boot and PostgreSQL, ensuring the entire application runs smoothly from front to back.
               </p>
             </motion.div>
 

@@ -2,42 +2,36 @@ import { ExperienceType, EducationType } from "@/type/type";
 
 export const experienceData: ExperienceType[] = [
     {
-        role: "Senior Web Developer",
-        company: "Tech Solutions Inc.",
-        period: "2024 - Present",
+        role: "Front-end Developer",
+        company: "ISTAD's Project",
+        period: "2026 - 2026",
         description:
-            "Leading the front-end development team to build high-performance React and Next.js applications. Architected enterprise-grade backends using Java Spring Boot and PostgreSQL.",
+            "Developed and maintained front-end web applications. Build modern static UI and intergret with API by using RTK Query. Do responsive pages and create some endpoint by using spring boot and postgresql. Able to use AI to help develop and design the UI such as Gemini and code antigravity.",
     },
     {
-        role: "Full Stack Developer",
-        company: "Digital Innovations",
-        period: "2022 - 2024",
+        role: "Shipping Officer",
+        company: "INJAE Garment Co., Ltd",
+        period: "2019 - Present",
         description:
-            "Developed and maintained full-stack web applications. Improved database query efficiency by 40% and reduced page load times by implementing SSR.",
-    },
-    {
-        role: "Junior Web Developer",
-        company: "Creative Studio",
-        period: "2021 - 2022",
-        description:
-            "Collaborated with designers to convert Figma mockups into responsive, pixel-perfect web interfaces using HTML, CSS, and JavaScript.",
+            "Coordinated with the production, warehouse, and purchasing departments to ensure timely and accurate shipment of goods. Do the tasks that assign from manager and follow up the tasks until it done. Have a good relationship with other departments and solve the problems that arise during the process.",
     },
 ];
 
 export const educationData: EducationType[] = [
     {
-        degree: "Bachelor of Computer Science",
+        degree: "Bachelor of Information Technology",
         institution:
             "Institute of Science and Technology Advanced Development (ISTAD)",
-        period: "2020 - 2024",
+        period: "2025 - 2029",
         description:
-            "Specialized in Software Engineering and Web Technologies. Graduated with Honors.",
+            "Focused on advanced web development, software engineering principles, and full-stack architecture. Gained practical hands-on experience building modern, responsive applications using React, Next.js, Java Spring Boot, and PostgreSQL.",
     },
     {
         degree: "High School Diploma",
-        institution: "Local High School",
-        period: "2017 - 2020",
-        description: "Focus on Mathematics and Sciences.",
+        institution: "Preah Bat Soramarith High School",
+        period: "2015 - 2018",
+        description:
+            "Completed foundational studies with a strong emphasis on Mathematics and Sciences, developing critical analytical and problem-solving skills.",
     },
 ];
 
