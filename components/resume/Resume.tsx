@@ -49,6 +49,41 @@ export default function Resume() {
       clone.id = "cv-content-clone";
       clone.classList.add("pdf-exporting");
 
+      // Guarantee perfect desktop layout by mapping mobile classes to desktop classes on the clone
+      const forceDesktopClasses = (el: Element) => {
+        const classMap: Record<string, string> = {
+          "flex-col": "flex-row",
+          "items-center": "items-end",
+          "w-28": "w-36",
+          "h-36": "h-44",
+          "text-center": "text-left",
+          "justify-center": "justify-start",
+          "text-4xl": "text-5xl",
+          "text-xl": "text-2xl",
+          "grid-cols-1": "grid-cols-3",
+          "gap-6": "gap-8",
+          "pb-8": "pb-10",
+          "p-6": "p-12",
+          "sm:p-8": "p-12",
+        };
+        
+        // Swap base classes with their desktop equivalents
+        Object.entries(classMap).forEach(([mobile, desktop]) => {
+          if (el.classList.contains(mobile)) {
+            el.classList.remove(mobile);
+            el.classList.add(desktop);
+          }
+        });
+
+        // Explicitly apply lg: rules
+        if (el.classList.contains("lg:col-span-2")) {
+          el.classList.add("col-span-2");
+        }
+      };
+
+      forceDesktopClasses(clone);
+      clone.querySelectorAll("*").forEach(forceDesktopClasses);
+
       cloneWrapper.appendChild(clone);
       document.body.appendChild(cloneWrapper);
 
@@ -128,21 +163,6 @@ export default function Resume() {
             opacity: 1 !important;
             transform: none !important;
         }
-        .pdf-exporting {
-            width: 1024px !important;
-            max-width: 1024px !important;
-            padding: 3rem !important;
-        }
-        .pdf-exporting .flex-col { flex-direction: row !important; }
-        .pdf-exporting .items-center { align-items: flex-end !important; }
-        .pdf-exporting .w-28 { width: 9rem !important; }
-        .pdf-exporting .h-36 { height: 11rem !important; }
-        .pdf-exporting .text-center { text-align: left !important; }
-        .pdf-exporting .justify-center { justify-content: flex-start !important; }
-        .pdf-exporting .text-4xl { font-size: 3rem !important; line-height: 1 !important; }
-        .pdf-exporting .text-xl { font-size: 1.5rem !important; line-height: 2rem !important; }
-        .pdf-exporting .grid-cols-1 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
-        .pdf-exporting .lg\\:col-span-2 { grid-column: span 2 / span 2 !important; }
       `,
         }}
       />
