@@ -34,14 +34,29 @@ export default function Resume() {
       const { toJpeg } = await import("html-to-image");
       const { jsPDF } = await import("jspdf");
 
-      const element = document.getElementById("cv-content");
-      if (!element) return;
+      const originalElement = document.getElementById("cv-content");
+      if (!originalElement) return;
 
-      // Force framer-motion elements to be fully visible regardless of scroll position
-      element.classList.add("pdf-exporting");
+      // Create an off-screen wrapper to force desktop layout for accurate dimension calculation
+      const cloneWrapper = document.createElement("div");
+      cloneWrapper.style.position = "absolute";
+      cloneWrapper.style.top = "-9999px";
+      cloneWrapper.style.left = "-9999px";
+      cloneWrapper.style.width = "1024px";
+      cloneWrapper.style.zIndex = "-1";
+
+      const clone = originalElement.cloneNode(true) as HTMLElement;
+      clone.id = "cv-content-clone";
+      clone.classList.add("pdf-exporting");
+
+      cloneWrapper.appendChild(clone);
+      document.body.appendChild(cloneWrapper);
+
+      // Give browser time to compute layout of the clone
+      await new Promise((resolve) => setTimeout(resolve, 100));
 
       // Use JPEG with high pixelRatio for crisp text and optimized quality to hit ~2MB size
-      const imgData = await toJpeg(element, {
+      const imgData = await toJpeg(clone, {
         quality: 0.92,
         pixelRatio: 4,
         backgroundColor: resolvedTheme === "dark" ? "#09090b" : "#ffffff",
@@ -63,9 +78,8 @@ export default function Resume() {
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
 
-      const rect = element.getBoundingClientRect();
-      const canvasWidth = rect.width;
-      const canvasHeight = rect.height;
+      const canvasWidth = clone.offsetWidth;
+      const canvasHeight = clone.offsetHeight;
 
       // Scale to fit within one A4 page (adding small 10mm margins)
       const margin = 10;
@@ -90,8 +104,9 @@ export default function Resume() {
     } catch (error) {
       console.error("Error generating PDF:", error);
     } finally {
-      const element = document.getElementById("cv-content");
-      if (element) element.classList.remove("pdf-exporting");
+      const cloneWrapper =
+        document.getElementById("cv-content-clone")?.parentElement;
+      if (cloneWrapper) document.body.removeChild(cloneWrapper);
       setIsDownloading(false);
     }
   };
@@ -113,6 +128,21 @@ export default function Resume() {
             opacity: 1 !important;
             transform: none !important;
         }
+        .pdf-exporting {
+            width: 1024px !important;
+            max-width: 1024px !important;
+            padding: 3rem !important;
+        }
+        .pdf-exporting .flex-col { flex-direction: row !important; }
+        .pdf-exporting .items-center { align-items: flex-end !important; }
+        .pdf-exporting .w-28 { width: 9rem !important; }
+        .pdf-exporting .h-36 { height: 11rem !important; }
+        .pdf-exporting .text-center { text-align: left !important; }
+        .pdf-exporting .justify-center { justify-content: flex-start !important; }
+        .pdf-exporting .text-4xl { font-size: 3rem !important; line-height: 1 !important; }
+        .pdf-exporting .text-xl { font-size: 1.5rem !important; line-height: 2rem !important; }
+        .pdf-exporting .grid-cols-1 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+        .pdf-exporting .lg\\:col-span-2 { grid-column: span 2 / span 2 !important; }
       `,
         }}
       />
