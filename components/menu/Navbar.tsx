@@ -12,7 +12,35 @@ export default function Navbar() {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const [activeSection, setActiveSection] = useState("#home");
+
+  useEffect(() => {
+    setMounted(true);
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -60% 0px" }
+    );
+
+    // Give DOM a small tick to ensure all sections are rendered
+    setTimeout(() => {
+      menuData.forEach((menu) => {
+        const id = menu.target.substring(1);
+        const element = document.getElementById(id);
+        if (element) {
+          observer.observe(element);
+        }
+      });
+    }, 100);
+
+    return () => observer.disconnect();
+  }, [pathname]); // re-run if pathname changes (though it shouldn't for one-page)
 
   if (pathname === "/resume") return null;
 
@@ -30,9 +58,19 @@ export default function Navbar() {
               <Link
                 key={index}
                 href={menu.target}
-                className="hover:text-orange-500 transition font-medium"
+                onClick={() => setActiveSection(menu.target)}
+                className={`hover:text-orange-500 transition font-medium relative ${
+                  activeSection === menu.target ? "text-orange-500" : ""
+                }`}
               >
                 {menu.title}
+                {activeSection === menu.target && (
+                  <motion.div
+                    layoutId="desktop-underline"
+                    className="absolute left-0 top-full h-[2px] w-full bg-orange-500 mt-1"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
               </Link>
             ))}
             {mounted && (
@@ -94,10 +132,22 @@ export default function Navbar() {
                 <Link
                   key={index}
                   href={menu.target}
-                  onClick={() => setIsOpen(false)}
-                  className="text-lg font-medium hover:text-orange-500"
+                  onClick={() => {
+                    setIsOpen(false);
+                    setActiveSection(menu.target);
+                  }}
+                  className={`text-lg font-medium hover:text-orange-500 relative inline-block w-max ${
+                    activeSection === menu.target ? "text-orange-500" : ""
+                  }`}
                 >
                   {menu.title}
+                  {activeSection === menu.target && (
+                    <motion.div
+                      layoutId="mobile-underline"
+                      className="absolute left-0 top-full h-[2px] w-full bg-orange-500 mt-1"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
                 </Link>
               ))}
               <button 

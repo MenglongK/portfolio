@@ -99,9 +99,10 @@ export default function Homepage() {
         <div className="fixed top-[40%] left-[60%] w-[30vw] h-[30vw] rounded-full bg-blue-600/10 blur-[100px] pointer-events-none z-0"></div>
 
         {/* Main Content Wrapper */}
-        <div id="home" className="relative z-10">
+        <div className="relative z-10">
           {/* Hero Section */}
           <motion.section
+            id="home"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}

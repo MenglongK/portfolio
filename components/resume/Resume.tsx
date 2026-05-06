@@ -13,6 +13,7 @@ import {
   Award,
   Sun,
   Moon,
+  Loader2,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
@@ -23,11 +24,68 @@ import { experienceData, educationData, skills } from "@/data/resume";
 export default function Resume() {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
-  const handleDownloadCV = () => {
-    window.print();
+  const handleDownloadCV = async () => {
+    setIsDownloading(true);
+    try {
+      const { toJpeg } = await import("html-to-image");
+      const { jsPDF } = await import("jspdf");
+
+      const element = document.getElementById("cv-content");
+      if (!element) return;
+
+      // Use JPEG with 0.98 quality and 2.5x scale to ensure 1-2MB size while eliminating noise artifacts
+      const imgData = await toJpeg(element, {
+        quality: 0.98,
+        pixelRatio: 2.5, 
+        backgroundColor: resolvedTheme === "dark" ? "#09090b" : "#ffffff",
+        style: {
+          margin: "0",
+          borderRadius: "0",
+          border: "none",
+          boxShadow: "none"
+        }
+      });
+
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+        compress: true, // Enable PDF compression
+      });
+
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      
+      const rect = element.getBoundingClientRect();
+      const canvasWidth = rect.width;
+      const canvasHeight = rect.height;
+
+      // Scale to fit within one A4 page (adding small 10mm margins)
+      const margin = 10;
+      const maxPdfWidth = pdfWidth - (margin * 2);
+      const maxPdfHeight = pageHeight - (margin * 2);
+
+      const ratio = Math.min(maxPdfWidth / canvasWidth, maxPdfHeight / canvasHeight);
+      
+      const finalWidth = canvasWidth * ratio;
+      const finalHeight = canvasHeight * ratio;
+
+      // Center horizontally
+      const xOffset = (pdfWidth - finalWidth) / 2;
+      const yOffset = margin; // Top aligned with margin
+
+      pdf.addImage(imgData, "JPEG", xOffset, yOffset, finalWidth, finalHeight);
+
+      pdf.save("Menglong_Keo_Resume.pdf");
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   return (
@@ -46,7 +104,7 @@ export default function Resume() {
       `,
         }}
       />
-      <div className="bg-background text-foreground/80 font-sans antialiased relative selection:bg-orange-500 selection:text-foreground min-h-screen py-6 sm:py-10 print:py-0 print:bg-white">
+      <div id="cv-wrapper" className="bg-background text-foreground/80 font-sans antialiased relative selection:bg-orange-500 selection:text-foreground min-h-screen py-6 sm:py-10 print:py-0 print:bg-white">
         {/* Decorative Background Blobs for Glassmorphism Effect */}
         <div className="fixed top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-orange-600/20 blur-[120px] pointer-events-none z-0 print:hidden"></div>
         <div className="fixed bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-purple-600/20 blur-[120px] pointer-events-none z-0 print:hidden"></div>
@@ -55,6 +113,7 @@ export default function Resume() {
         <div className="relative z-10 container mx-auto px-4 sm:px-6 max-w-5xl print:px-0">
           {/* Navigation / Actions */}
           <motion.div
+            data-html2canvas-ignore="true"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -84,23 +143,24 @@ export default function Resume() {
               )}
               <button
                 onClick={handleDownloadCV}
-                className="flex items-center gap-2 px-6 py-2 rounded-full bg-orange-500 text-white font-semibold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30"
+                disabled={isDownloading}
+                className="flex items-center gap-2 px-6 py-2 rounded-full bg-orange-500 text-white font-semibold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                <Download size={18} />
-                <span className="hidden sm:inline">Download PDF</span>
+                {isDownloading ? <Loader2 size={18} className="animate-spin" /> : <Download size={18} />}
+                <span className="hidden sm:inline">{isDownloading ? "Generating..." : "Download PDF"}</span>
               </button>
             </div>
           </motion.div>
 
           {/* CV Content Wrapper */}
-          <div className="bg-foreground/5 backdrop-blur-xl border border-foreground/10 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl print:bg-white print:text-black print:border-none print:shadow-none print:p-4">
+          <div id="cv-content" className="bg-foreground/5 backdrop-blur-xl border border-foreground/10 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl print:bg-white print:text-black print:border-none print:shadow-none print:p-4">
             {/* Header Section */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start border-b border-foreground/10 print:border-gray-200 pb-8 md:pb-10 print:flex-row print:pb-6 print:gap-8"
+              className="flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-end border-b border-foreground/10 print:border-gray-200 pb-8 md:pb-10 print:flex-row print:items-end print:pb-6 print:gap-8"
             >
               <div className="w-28 h-36 md:w-36 md:h-44 shrink-0 rounded-2xl overflow-hidden border-2 border-foreground/10 print:border-none shadow-xl print:shadow-none">
                 <Image
