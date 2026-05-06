@@ -37,10 +37,13 @@ export default function Resume() {
       const element = document.getElementById("cv-content");
       if (!element) return;
 
-      // Use JPEG with 0.98 quality and 2.5x scale to ensure 1-2MB size while eliminating noise artifacts
+      // Force framer-motion elements to be fully visible regardless of scroll position
+      element.classList.add("pdf-exporting");
+
+      // Use JPEG with high pixelRatio for crisp text and optimized quality to hit ~2MB size
       const imgData = await toJpeg(element, {
         quality: 0.98,
-        pixelRatio: 2.5, 
+        pixelRatio: 5, 
         backgroundColor: resolvedTheme === "dark" ? "#09090b" : "#ffffff",
         style: {
           margin: "0",
@@ -84,6 +87,8 @@ export default function Resume() {
     } catch (error) {
       console.error("Error generating PDF:", error);
     } finally {
+      const element = document.getElementById("cv-content");
+      if (element) element.classList.remove("pdf-exporting");
       setIsDownloading(false);
     }
   };
@@ -100,6 +105,10 @@ export default function Resume() {
                 opacity: 1 !important;
                 transform: none !important;
             }
+        }
+        .pdf-exporting * {
+            opacity: 1 !important;
+            transform: none !important;
         }
       `,
         }}
