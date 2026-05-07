@@ -48,6 +48,7 @@ export default function Resume() {
       const clone = originalElement.cloneNode(true) as HTMLElement;
       clone.id = "cv-content-clone";
       clone.classList.add("pdf-exporting");
+      clone.classList.add("text-lg"); // Increase base font size for PDF
 
       // Guarantee perfect desktop layout by mapping mobile classes to desktop classes on the clone
       const forceDesktopClasses = (el: Element) => {
@@ -58,8 +59,6 @@ export default function Resume() {
           "h-36": "h-44",
           "text-center": "text-left",
           "justify-center": "justify-start",
-          "text-4xl": "text-5xl",
-          "text-xl": "text-2xl",
           "grid-cols-1": "grid-cols-3",
           "gap-6": "gap-8",
           "pb-8": "pb-10",
@@ -78,6 +77,34 @@ export default function Resume() {
         // Explicitly apply lg: rules
         if (el.classList.contains("lg:col-span-2")) {
           el.classList.add("col-span-2");
+        }
+
+        // Dynamically increase all text sizes by 1 level for better PDF readability
+        const sizeLevels = [
+          "text-xs", "text-sm", "text-base", "text-lg", "text-xl", 
+          "text-2xl", "text-3xl", "text-4xl", "text-5xl", "text-6xl", "text-7xl", "text-8xl", "text-9xl"
+        ];
+        let maxLevel = -1;
+        const classesToRemove: string[] = [];
+
+        Array.from(el.classList).forEach((className) => {
+          const parts = className.split(":");
+          const baseClass = parts[parts.length - 1];
+          const level = sizeLevels.indexOf(baseClass);
+          if (level !== -1) {
+            classesToRemove.push(className);
+            if (level > maxLevel) {
+              maxLevel = level;
+            }
+          }
+        });
+
+        if (maxLevel !== -1) {
+          classesToRemove.forEach((c) => el.classList.remove(c));
+          const isHeading = /^H[1-6]$/.test(el.tagName);
+          const bumpAmount = isHeading ? 0 : 1;
+          const finalLevel = Math.min(maxLevel + bumpAmount, sizeLevels.length - 1);
+          el.classList.add(sizeLevels[finalLevel]);
         }
       };
 
